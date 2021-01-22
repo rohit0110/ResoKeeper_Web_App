@@ -1,0 +1,51 @@
+<app-profile-header></app-profile-header>
+
+<div class="main">
+    <h1>Resolutions</h1>
+    <div class="all-resolutions">
+        <!-- WILL BE LIST OF ALL RESOLUTIONS -->
+        <ol>
+            <li>Resolution 1</li>
+            <li>Resolution 2</li>
+            <li>Resolution 3</li>
+        </ol>
+    </div>
+    <!-- FORM TO CREATE RESOLUTIONS -->
+    <div class="create-resolutions">
+        <form [formGroup]="create_resolutions_form">
+            <div class="form-group">
+                <label>Title/Goal</label>
+                <input type="text" class="form-control" formControlName="resolution_name">
+            </div>
+            <div class="form-group">
+                <h3>Type</h3>
+                <input type="radio" class="form-control" name="type" formControlName="type" value="progress"> Progress
+                <input type="radio" class="form-control" name="type" formControlName="type" value="daily"> Calender
+            </div>
+            <!-- POPS UP WHEN PROGRESS IS SELECTED -->
+            <ng-container *ngIf="create_resolutions_form.controls['type'].value==='progress'">
+                <div class="form-group" >
+                    <label>Starting Point:</label>
+                    <input type="number" class="form-control" formControlName="progress_start">
+                </div>
+                <div class="form-group">
+                    <label>Goal:</label>
+                    <input type="number" class="form-control" formControlName="progress_end">
+                </div>
+            </ng-container>
+            <!-- POPS UP WHEN CALENDER IS SELECTED -->
+            <ng-container *ngIf="create_resolutions_form.controls['type'].value==='daily'">
+                <div class="form-group">
+                    <label>Minimum days: </label>
+                    <input type="number" class="form-control" formControlName="daily_min">
+                </div>
+                <div class="form-group">
+                    <label>Goal days: </label>
+                    <input type="number" class="form-control" formControlName="daily_goal">
+                </div>
+            </ng-container>
+           
+            <button type="submit" [disabled]="!create_resolutions_form.valid">Create!</button>
+        </form>
+    </div>
+</div>

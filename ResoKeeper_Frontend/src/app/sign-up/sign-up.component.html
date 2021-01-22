@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="main">
+    <h1>SIGN UP</h1>
+    <!-- FORM STUFF -->
+    <div class="enter-data">
+        <form [formGroup]="sign_up_form">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" formControlName="email">
+            </div>
+            <div class="form-group">
+                <label>username</label>
+                <input type="text" class="form-control" formControlName="username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" formControlName="cpassword">
+            </div>
+            <button type="submit" [disabled]="!sign_up_form.valid">SIGN UP</button>
+        </form>
+    </div>
+</div>

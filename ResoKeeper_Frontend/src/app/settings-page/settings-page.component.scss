@@ -1,0 +1,37 @@
+nav{
+    display: flex;
+    width: 100%;
+    background-color: darkblue;
+    justify-content: space-between;
+    min-height: 8vh;
+    align-items: center;
+}
+
+.logo a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-links{
+    height: 100%;
+    ul{
+        display: flex;
+    }
+    li{
+        list-style: none;
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        &:hover{
+            background-color: grey;
+        }
+    }
+}
+
+//MAIN
+
+.main{
+    background-color: grey;
+    height: 84vh;
+}

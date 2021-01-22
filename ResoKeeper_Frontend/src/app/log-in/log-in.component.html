@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="main">
+    <h1>LOG IN</h1>
+    <div class="enter-data">
+        <form [formGroup]="log_in_form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" formControlName="username">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password">
+            </div>
+
+            <button type="submit" [disabled]="!log_in_form.valid">Log In</button>
+        </form>
+    </div>
+</div>
