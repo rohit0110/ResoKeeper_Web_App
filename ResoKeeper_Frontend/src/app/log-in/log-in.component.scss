@@ -2,4 +2,62 @@
     background-color: rgba(0,0,0,0);
     height: 84vh;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+//VISIBLE DIVISION CONTAINING EVERYTHING
+.enter-data{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    margin-top: 100px;
+    width: 400px;
+    height: 300px;
+    border: 2px white solid;
+    
+    h1{
+        padding: 10px 0px 0px 25px;
+        color: #00bcf5;
+        font-size: 30px;
+    }
+    //FORM CONTENT
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding-top: 20px;
+        label{
+            display: block;
+            padding-bottom: 2px;
+            color: #00bcf5;
+        }
+        input{
+            display: block;
+            width: 350px;
+            height: 40px;
+            border: 2px black solid;
+            border-radius: 5px;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+        button{
+            background-color: #00bcf5;
+            color: black;
+            display: flex;
+            height: 36px;
+            width: 80px;
+            margin-left: 25px;
+            align-self:flex-start;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            border: 2px white solid;
+            border-radius: 4px;
+
+            &:hover{
+                background-color: #00f5bc;
+            }
+        }
+    }
 }

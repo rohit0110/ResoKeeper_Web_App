@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="main">
-    <h1>LOG IN</h1>
     <div class="enter-data">
+        <h1>Log In</h1>
         <form [formGroup]="log_in_form">
             <div class="form-group">
                 <label>Username</label>
@@ -13,7 +13,7 @@
                 <input type="password" class="form-control" formControlName="password">
             </div>
 
-            <button type="submit" [disabled]="!log_in_form.valid">Log In</button>
+            <button type="submit" [disabled]="!log_in_form.valid">LOG IN</button>
         </form>
     </div>
 </div>
