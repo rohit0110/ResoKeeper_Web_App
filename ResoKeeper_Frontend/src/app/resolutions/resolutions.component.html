@@ -4,11 +4,12 @@
     <h1>Resolutions</h1>
     <div class="all-resolutions">
         <!-- WILL BE LIST OF ALL RESOLUTIONS -->
-        <ol>
-            <li>Resolution 1</li>
-            <li>Resolution 2</li>
-            <li>Resolution 3</li>
+        <ol *ngIf="is_loaded">
+            <li *ngFor="let resolution of resolutions">{{resolution.title}}</li>
         </ol>
+        <div class="lol" *ngIf="!is_loaded" >
+                <p>currently loading</p>
+        </div>
     </div>
     <!-- FORM TO CREATE RESOLUTIONS -->
     <div class="create-resolutions">
