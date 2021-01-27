@@ -6,8 +6,8 @@ var logger = require('morgan');
 var cors=require('cors');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var resolutionsRouter = require('./routes/resolutions')
+var resolutionsRouter = require('./routes/resolutions');
+var groupsRouter= require('./routes/groups');
 
 //what i have written
 const mysql=require('mysql');
@@ -43,8 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //ROUTES
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/resolutions', resolutionsRouter);
+app.use('/groups', groupsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -3,11 +3,12 @@
     <h1>Groups</h1>
     <div class="all-groups">
         <!-- WILL BE LIST OF ALL GROUPS -->
-        <ol>
-            <li>Group 1</li>
-            <li>Group 2</li>
-            <li>Group 3</li>
+        <ol *ngIf="is_loaded">
+            <li *ngFor="let group of groups">{{group.title}}</li>
         </ol>
+        <div class="load" *ngIf="!is_loaded">
+            <p>Currently loading</p>
+        </div>
     </div>
     <!-- FORM TO CREATE GROUPS -->
     <div class="create-groups">
