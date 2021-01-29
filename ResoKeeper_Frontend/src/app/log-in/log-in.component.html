@@ -2,15 +2,14 @@
 <div class="main">
     <div class="enter-data">
         <h1>Log In</h1>
-        <form [formGroup]="log_in_form">
+        <form [formGroup]="log_in_form" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" class="form-control" formControlName="username">
+                <input type="text" class="form-control" formControlName="username" required>
             </div>
-
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" formControlName="password">
+                <input type="password" class="form-control" formControlName="password" required>
             </div>
 
             <button type="submit" [disabled]="!log_in_form.valid">LOG IN</button>

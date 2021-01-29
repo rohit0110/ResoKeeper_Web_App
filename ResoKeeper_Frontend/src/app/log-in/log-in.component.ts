@@ -12,8 +12,14 @@ export class LogInComponent implements OnInit {
 
   ngOnInit(): void {
     this.log_in_form=new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
+
+    this.onSubmit();
+  }
+
+  onSubmit() {
+    //ADD WHAT HAPPENS ON SUBMISSION
   }
 }

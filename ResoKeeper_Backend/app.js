@@ -8,6 +8,7 @@ var cors=require('cors');
 var indexRouter = require('./routes/index');
 var resolutionsRouter = require('./routes/resolutions');
 var groupsRouter= require('./routes/groups');
+var loginRouter= require('./routes/log-in-form');
 
 //what i have written
 const mysql=require('mysql');
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/resolutions', resolutionsRouter);
 app.use('/groups', groupsRouter);
+//app.use('/log_in_form', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
