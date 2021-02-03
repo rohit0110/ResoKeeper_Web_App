@@ -7,13 +7,13 @@
         <ol *ngIf="is_loaded">
             <li *ngFor="let resolution of resolutions">{{resolution.title}}</li>
         </ol>
-        <div class="lol" *ngIf="!is_loaded" >
+        <div class="default_reso" *ngIf="!is_loaded" >
                 <p>currently loading</p>
         </div>
     </div>
     <!-- FORM TO CREATE RESOLUTIONS -->
     <div class="create-resolutions">
-        <form [formGroup]="create_resolutions_form">
+        <form [formGroup]="create_resolutions_form" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label>Title/Goal</label>
                 <input type="text" class="form-control" formControlName="resolution_name">

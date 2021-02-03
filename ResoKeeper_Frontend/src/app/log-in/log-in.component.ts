@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-log-in',
@@ -8,18 +9,25 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class LogInComponent implements OnInit {
   log_in_form: FormGroup;
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.log_in_form=new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
-
-    this.onSubmit();
   }
 
   onSubmit() {
-    //ADD WHAT HAPPENS ON SUBMISSION
+    let formData: any =new FormData();
+    formData.append("username",this.log_in_form.get('username')!.value);
+    formData.append("password",this.log_in_form.get('password')!.value);
+    const URL = "http://localhost:3000/log_in_form"
+    this.http.post(URL, formData).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    )
   }
 }
