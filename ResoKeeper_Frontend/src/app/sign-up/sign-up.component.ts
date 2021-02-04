@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,13 +25,21 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    let formData: any =new FormData();
-    formData.append("name",this.sign_up_form.get("name")!.value);
-    formData.append("email",this.sign_up_form.get("email")!.value);
-    formData.append("username", this.sign_up_form.get("username")!.value);
-    formData.append("password", this.sign_up_form.get("password")!.value);
+    let data: any = {
+      name: this.sign_up_form.get("name")!.value,
+      email: this.sign_up_form.get("email")!.value,
+      username: this.sign_up_form.get("username")!.value,
+      password: this.sign_up_form.get("password")!.value
+    };
+    // formData.append("name",this.sign_up_form.get("name")!.value);
+    // formData.append("email",this.sign_up_form.get("email")!.value);
+    // formData.append("username", this.sign_up_form.get("username")!.value);
+    // formData.append("password", this.sign_up_form.get("password")!.value);
+    let headers=new HttpHeaders();
+    headers=headers.append("Content-Type","application/json");
+    // console.log(formData.get("username"));
     const URL = "http://localhost:3000/sign_up_form";
-    this.http.post(URL,formData).subscribe(
+    this.http.post(URL,JSON.stringify(data),{headers: headers}).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     )

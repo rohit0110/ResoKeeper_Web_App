@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors=require('cors');
+var bodyParser=require('body-parser');
 
 var indexRouter = require('./routes/index');
 var resolutionsRouter = require('./routes/resolutions');
@@ -11,35 +12,17 @@ var groupsRouter= require('./routes/groups');
 var loginRouter= require('./routes/log-in-form');
 var signupRouter=require('./routes/sign-up-form');
 
-//what i have written
-const mysql=require('mysql');
-
-//CREATE CONNECTION
-const db=mysql.createConnection({
-  host:'localhost',
-  user:'resokeeper',
-  password:'kz28DMv/5DW/-GW',
-  database: 'ResoKeeper_Database'
-});
-
-//CONNECT
-db.connect((err)=>{
-  if(err){
-    throw err;
-  }
-  console.log("MySQL connected");
-});
-
 const app=express();
 app.listen('3000',()=>{
     console.log('Server has started');
 });
 
 app.use(cors());
+app.use(bodyParser.json());
 //app.options("*",cors());
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+//app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
