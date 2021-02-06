@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient} from '@angular/common/http'
+import { HttpClient, HttpHeaders} from '@angular/common/http'
 
 interface resolutionResponse{
   title: string;
@@ -25,8 +25,6 @@ export class ResolutionsComponent implements OnInit {
         type: new FormControl('', Validators.required),
         resolution_name: new FormControl('', Validators.required),
         progress_end: new FormControl(Validators.required),
-        progress_start: new FormControl(Validators.required),
-        daily_min: new FormControl(Validators.required),
         daily_goal: new FormControl(Validators.required)
     });
 
@@ -45,21 +43,25 @@ export class ResolutionsComponent implements OnInit {
       })
   }
 
+  //ASK PRAECEP HOW TO BE EFFICIENT
   onSubmit() {
-    let formData: any = new FormData();
-    let type: string = this.create_resolutions_form.get('type')!.value;
-    formData.append("resolution_name",this.create_resolutions_form.get('resolution_name')!.value);
-    formData.append("resolution_name",type);
-    if( type === "progress") {
-      formData.append("progress_end", this.create_resolutions_form.get('progress_start')!.value);
-      formData.append("progress_end", this.create_resolutions_form.get('progress_end')!.value);
+    let data: any = {
+      title: this.create_resolutions_form.get('resolution_name')!.value,
+      type: this.create_resolutions_form.get('type')!.value,
+      pro_goal: this.create_resolutions_form.get('progress_end')!.value,
+      cal_goal: this.create_resolutions_form.get('daily_goal')!.value,
+      username: "Sicarus"
+    };
+    if ( data.type === "progress") {
+      data.cal_goal= 0;
     }
     else {
-      formData.append("daily_min", this.create_resolutions_form.get('daily_min')!.value);
-      formData.append("daily_goal", this.create_resolutions_form.get('daily_goal')!.value);
+      data.pro_goal= 0;
     }
+    let headers = new HttpHeaders();
+    headers=headers.append("Content-type","application/json");
     const URL = "http://localhost:3000/resolutions/create";
-    this.http.post(URL,formData).subscribe(
+    this.http.post(URL,JSON.stringify(data),{headers: headers}).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     )
