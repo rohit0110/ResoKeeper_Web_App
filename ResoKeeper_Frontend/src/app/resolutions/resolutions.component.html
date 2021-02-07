@@ -27,14 +27,14 @@
             <ng-container *ngIf="create_resolutions_form.controls['type'].value==='progress'">
                 <div class="form-group">
                     <label>Goal:</label>
-                    <input type="number" class="form-control" formControlName="progress_end" value=0>
+                    <input type="number" class="form-control" formControlName="progress_end">
                 </div>
             </ng-container>
             <!-- POPS UP WHEN CALENDER IS SELECTED -->
             <ng-container *ngIf="create_resolutions_form.controls['type'].value==='daily'">
                 <div class="form-group">
                     <label>Goal days: </label>
-                    <input type="number" class="form-control" formControlName="daily_goal" value=0>
+                    <input type="number" class="form-control" formControlName="daily_goal">
                 </div>
             </ng-container>
            

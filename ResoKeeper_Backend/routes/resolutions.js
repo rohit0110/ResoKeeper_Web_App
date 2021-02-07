@@ -3,9 +3,18 @@ var router = express.Router();
 
 const db=require('./../config/database.js');
 
-/* GET ALL Resolutions. */
+//GET LIST OF RESOLUTIONS
 router.get('/', function(req, res, next) {
-  res.json([{title: "qwerty@praecep"}]);
+  //username fucntionality
+  let que='SELECT title FROM resolutions WHERE username="Sicarus";';
+  db.query(que, function(err,result) {
+    if(err)
+      throw err;
+    else{
+      console.log(result);
+      res.send(result);
+    }
+  });
 });
 
 //CREATE A RESOLUTION
@@ -27,6 +36,5 @@ router.post('/create', function(req, res){
 });
 
 module.exports = router;
-
 //authentication
 //https://medium.com/quick-code/handling-authentication-and-authorization-with-node-7f9548fedde8

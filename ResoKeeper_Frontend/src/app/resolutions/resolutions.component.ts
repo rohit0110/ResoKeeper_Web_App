@@ -28,20 +28,21 @@ export class ResolutionsComponent implements OnInit {
         daily_goal: new FormControl(Validators.required)
     });
 
-    this.testData().then(()=>{
+    this.getResolutions().then(()=>{
       this.is_loaded=true;
     })
   }
-
-  testData(): Promise<resolutionResponse[]> {
+  
+  //GET LIST OF ALL RESOLUTIONS MADE BY USER
+  getResolutions(): Promise<resolutionResponse[]> {
     const URL = "http://localhost:3000/resolutions";
     return fetch(URL, {method: "GET"})
-      .then(res => res.json())
+      .then(res=> res.json())
       .then(resolutions => {
-        this.resolutions=resolutions;
+        this.resolutions = resolutions;
         return resolutions;
       })
-  }
+  } 
 
   //ASK PRAECEP HOW TO BE EFFICIENT
   onSubmit() {
