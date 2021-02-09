@@ -5,7 +5,7 @@ const db=require('./../config/database.js');
 
 //GET LIST OF RESOLUTIONS
 router.get('/', function(req, res, next) {
-  //username fucntionality
+  //username functionality
   let que='SELECT title FROM resolutions WHERE username="Sicarus";';
   db.query(que, function(err,result) {
     if(err)
