@@ -1,1 +1,10 @@
-<p>particular-resolution works!</p>
+<app-profile-header></app-profile-header>
+
+<div class="main">
+    <div class="name-div">
+        <h2>Title of Resolution</h2>
+        <button (click)="is_editing=true">Edit</button>
+        <app-edit-resolution *ngIf="is_editing"></app-edit-resolution>
+    </div>
+    <p>YADADY YADYADYD GIBBERisH</p>
+</div>

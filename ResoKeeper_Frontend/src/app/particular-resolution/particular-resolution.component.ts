@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./particular-resolution.component.scss']
 })
 export class ParticularResolutionComponent implements OnInit {
-
+  is_editing: boolean=false;
   constructor() { }
 
   ngOnInit(): void {

@@ -5,7 +5,7 @@
     <div class="all-resolutions">
         <!-- WILL BE LIST OF ALL RESOLUTIONS -->
         <ol *ngIf="is_loaded">
-            <li *ngFor="let resolution of resolutions">{{resolution.title}}</li>
+            <li *ngFor="let resolution of resolutions"><a href="#">{{resolution.title}}</a></li>
         </ol>
         <div class="default_reso" *ngIf="!is_loaded" >
                 <p>currently loading</p>

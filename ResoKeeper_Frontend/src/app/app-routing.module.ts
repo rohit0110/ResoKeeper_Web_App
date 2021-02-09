@@ -4,6 +4,7 @@ import { FriendsComponent } from './friends/friends.component';
 import { GroupsComponent } from './groups/groups.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { ParticularResolutionComponent } from './particular-resolution/particular-resolution.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResolutionsComponent } from './resolutions/resolutions.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'friends',
     component: FriendsComponent
+  },
+  {
+    path: 'PR',
+    component: ParticularResolutionComponent
   }
 ];
 

@@ -35,6 +35,21 @@ router.post('/create', function(req, res){
   });
 });
 
+
+//EDIT A ERSOLUTION
+router.patch("/",function(req,res){
+  let new_title = req.body.new_title;
+  let title = req.body.title;
+  let que = "UPDATE resolutions SET title=(?) WHERE title=(?);"
+  db.query(que, [new_title,title], function(err,result) {
+    if(err)
+      throw err;
+    else {
+      console.log("UPDATED");
+      res.json({});
+    }
+  });
+});
 module.exports = router;
 //authentication
 //https://medium.com/quick-code/handling-authentication-and-authorization-with-node-7f9548fedde8

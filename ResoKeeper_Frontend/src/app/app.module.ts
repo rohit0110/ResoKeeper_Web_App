@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { ResolutionsComponent } from './resolutions/resolutions.component';
 import { GroupsComponent } from './groups/groups.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { ParticularResolutionComponent } from './particular-resolution/particular-resolution.component';
+import { EditResolutionComponent } from './edit-resolution/edit-resolution.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,13 @@ import { ParticularResolutionComponent } from './particular-resolution/particula
     ResolutionsComponent,
     GroupsComponent,
     ProfileHeaderComponent,
-    ParticularResolutionComponent
+    ParticularResolutionComponent,
+    EditResolutionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
