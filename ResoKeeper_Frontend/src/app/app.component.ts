@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,4 +9,5 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   title = 'ResoKeeper';
+  constructor() {}
 }

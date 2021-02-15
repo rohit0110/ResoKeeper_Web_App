@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  username: string;
+  constructor(private server: ServerService) { }
 
   ngOnInit(): void {
+    this.server.request('GET', '/log_in_form').subscribe((user: any) => {
+      console.log(user);
+      if(user) {
+        this.username = user.username;
+      }
+    });
   }
 
 }

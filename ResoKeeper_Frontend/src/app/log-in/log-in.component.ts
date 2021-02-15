@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -9,8 +10,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LogInComponent implements OnInit {
   log_in_form: FormGroup;
+  public loginInvalid: boolean;
+  private formSubmitAttempt: boolean;
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -20,14 +25,18 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    let formData: any =new FormData();
-    formData.append("username",this.log_in_form.get('username')!.value);
-    formData.append("password",this.log_in_form.get('password')!.value);
-    const URL = "http://localhost:3000/log_in_form"
-    this.http.post(URL, formData).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    )
+  async onSubmit() {
+    this.loginInvalid = false;
+    this.formSubmitAttempt = false;
+    if(this.log_in_form.valid) {
+      try {
+        await this.authService.login(this.log_in_form.value);
+      } catch(err) {
+        this.loginInvalid = true;
+      }
+    }
+    else {
+      this.formSubmitAttempt = true;
+    }
   }
 }
