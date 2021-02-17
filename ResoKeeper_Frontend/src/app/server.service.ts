@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { RouteConfigLoadEnd } from '@angular/router';
 //STORE JWT TOKEN AND ADD TO HEADER 
+
+interface resolutionResponse{
+  title: string;
+}
+
 const baseUrl = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root'
@@ -39,4 +44,18 @@ export class ServerService {
     }
     return this.http.get(baseUrl + route, {responseType: 'json',headers: headers, params: params});
   }
+
+  getData(route: string, data?:any) {
+    let headers = new HttpHeaders();
+    headers=headers.append("Content-Type","application/json");
+    headers=headers.append("Authorization", `Bearer ${this.token}`);
+    let params = new HttpParams();
+    if(data!==undefined) {
+      Object.getOwnPropertyNames(data).forEach(key => {
+        params = params.set(key, data[key]);
+      });
+    }
+    return this.http.get<resolutionResponse[]>(baseUrl + route, {responseType: 'json',headers: headers, params: params});
+  }
+  
 }

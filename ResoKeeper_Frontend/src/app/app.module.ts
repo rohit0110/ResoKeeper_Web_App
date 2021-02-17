@@ -34,14 +34,14 @@ import { EditResolutionComponent } from './edit-resolution/edit-resolution.compo
     GroupsComponent,
     ProfileHeaderComponent,
     ParticularResolutionComponent,
-    EditResolutionComponent
+    EditResolutionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

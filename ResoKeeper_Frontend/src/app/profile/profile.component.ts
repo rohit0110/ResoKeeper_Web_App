@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
+import { AuthService } from '../auth.service'
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-profile',
@@ -8,15 +10,17 @@ import { ServerService } from '../server.service';
 })
 export class ProfileComponent implements OnInit {
   username: string;
-  constructor(private server: ServerService) { }
+  constructor(
+    private server: ServerService,
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-    this.server.request('GET', '/log_in_form').subscribe((user: any) => {
-      console.log(user);
-      if(user) {
-        this.username = user.username;
-      }
-    });
+    if(!this.authService.isLoggedIn) {
+      this.router.navigate(["/log-in"]);
+      return;
+    }
+    this.username=this.authService.getUsername();
   }
-
 }

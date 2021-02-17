@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 const db=require('./../config/database.js');
+const jwtAuth = require('./auth.js');
 
 //GET LIST OF RESOLUTIONS
-router.get('/', function(req, res, next) {
+router.get('/', jwtAuth, function(req, res, next) {
   //username functionality
-  let que='SELECT title FROM resolutions WHERE username="Sicarus";';
-  db.query(que, function(err,result) {
+  let que='SELECT title FROM resolutions WHERE username=?;';
+  db.query(que, req.username, function(err,result) {
     if(err)
       throw err;
     else{

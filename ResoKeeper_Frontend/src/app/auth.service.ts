@@ -3,6 +3,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ServerService } from './server.service';
+import jwt_decode, { JwtPayload } from "jwt-decode";
+
+interface TokenValue{
+  username: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +17,15 @@ export class AuthService {
   private token: string;
 
   get isLoggedIn() {
-    return this.loggedIn.asObservable();
+    //Better to use observable because it automatically detects change in other parts of the code
+    return localStorage['user'];
   }
 
   constructor(private router: Router, private server: ServerService) { 
     console.log('auth service');
-    const userData = localStorage.getItem('user');
-    if(userData) {
-      console.log('Logged In from memory');
-      const user = JSON.parse(userData);
-      this.token = user.token;
-      this.server.setLoggedIn(true, this.token);
+    const token = localStorage.getItem('user');
+    if(token) {
+      this.server.setLoggedIn(true,token);
       this.loggedIn.next(true);
     }
   }
@@ -37,10 +40,7 @@ export class AuthService {
           this.token = response.token;
           this.server.setLoggedIn(true, this.token);
           this.loggedIn.next(true);
-          const userData = {
-            token: this.token
-          };
-          localStorage.setItem('user', JSON.stringify(userData));
+          localStorage.setItem('user',this.token);
           this.router.navigateByUrl('/profile');
         }
       });
@@ -57,5 +57,13 @@ export class AuthService {
     this.loggedIn.next(false);
     localStorage.clear();
     this.router.navigate(['/']);
+  }
+
+  getUsername() {
+    let username: string;
+    let token = localStorage.getItem('user')!;
+    let decoded = jwt_decode<TokenValue>(token);
+    username = decoded.username;
+    return username;
   }
 }
